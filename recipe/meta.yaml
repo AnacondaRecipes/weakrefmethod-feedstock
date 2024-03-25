@@ -11,26 +11,35 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
 
 test:
   imports:
     - weakrefmethod
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/twang817/weakrefmethod
   license: PSF-2.0
   license_family: PSF
   license_file: LICENSE
-  summary: "A WeakMethod class for storing bound methods using weak references."
+  summary: A WeakMethod class for storing bound methods using weak references.
+  description: |
+    A WeakMethod class for storing bound methods using weak references.
+  dev_url: https://github.com/twang817/weakrefmethod
+  doc_url: https://github.com/twang817/weakrefmethod
 
 extra:
   recipe-maintainers:
